@@ -1,14 +1,13 @@
-const { Pool } = require("pg"); // Import PostgreSQL client
-require("dotenv").config(); // Load environment variables
+const { Pool } = require("pg");
+require("dotenv").config();
 
-// Create the database connection pool
+// DB Connection Settings
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  port: process.env.DB_PORT || 5432, // Default PostgreSQL port
 });
 
-// Export the pool for use in the app
 module.exports = pool;

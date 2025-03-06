@@ -1,18 +1,18 @@
-const express = require('express');  
-const router = express.Router();  
-const { getLDRIndex } = require('../services/lendingRateService');  
+const express = require("express");
+const router = express.Router();
+const { getLDRIndex, saveLendingRate } = require("../services/ldriService");
 
-// Fetch LDR Index  
-router.get('/ldr-index', async (req, res) => {  
-    try {  
-        const ldr = await getLDRIndex();  
-        res.json({ ldr_index: ldr });  
-    } catch (err) {  
-        console.error(err);  
-        res.status(500).json({ message: 'Error fetching LDR index' });  
-    }  
-});  
+// Retrieve LDRI Index
+router.get("/ldr-index", async (req, res) => {
+  try {
+    const ldriIndex = await getLDRIndex();
+    res.json({ ldri: ldriIndex });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error calculating LDRI" });
+  }
+});
 
-// Add other endpoints (e.g., to save lending data)  
+// Add other endpoints for fetching historical rates, inserting mock data, etc.
 
-module.exports = router;  
+module.exports = router;
